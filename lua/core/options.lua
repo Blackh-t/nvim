@@ -47,3 +47,4 @@ vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#FF0000' }) -- Rød for 'delete
 vim.api.nvim_set_hl(0, 'GitSignsTopdelete', { fg = '#FF4500' }) -- Oransje for 'topdelete'
 vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { fg = '#FF1493' }) -- Rosa for 'changedelete'
 vim.api.nvim_set_hl(0, 'GitSignsUntracked', { fg = '#1E90FF' }) -- Blå for 'untracked'
+vim.opt.guicursor = 'n:blinkon100,i:ver100-blinkon1000,c:ver100'
