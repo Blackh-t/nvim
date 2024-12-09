@@ -7,14 +7,18 @@ vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, t
 -- Appearance of diagnostics
 vim.diagnostic.config {
   virtual_text = {
-    prefix = '●', -- Prefix for virtual text
+    prefix = '●',
+    -- Add a custom format function to show error codes
     format = function(diagnostic)
-      -- Hvis diagnosen er en advarsel (severity = WARN), forkort meldingen
-      if diagnostic.severity == vim.diagnostic.severity.WARN then
-        local shortened_message = string.sub(diagnostic.message, 1, 50) -- Klipp meldingen til 50 tegn
-        return string.format('%s', shortened_message) -- Vis den forkortede meldingen
+      -- Finn posisjonen til første forekomst av "-'" i meldingen
+      local end_pos = string.find(diagnostic.message, '-')
+
+      -- Hvis "-'" finnes, ta substringen fra starten av meldingen til dette punktet
+      if end_pos then
+        return string.sub(diagnostic.message, 1, end_pos - 1) -- -1 for å unngå å inkludere "-'"
       end
-      -- Hvis det ikke er en advarsel, vis hele meldingen
+
+      -- Hvis "-'" ikke finnes, vis hele meldingen
       return string.format('%s', diagnostic.message)
     end,
   },
