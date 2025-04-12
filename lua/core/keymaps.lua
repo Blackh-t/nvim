@@ -47,10 +47,10 @@ vim.keymap.set('n', '<leader>se', '<C-w>=', opts) -- make split windows equal wi
 vim.keymap.set('n', '<leader>xs', ':close<CR>', opts) -- close current split window
 
 -- Navigere mellom splits
-vim.keymap.set('n', '<leader><Up>', ':wincmd k<CR>', opts) -- Flytt til split over
-vim.keymap.set('n', '<leader><Down>', ':wincmd j<CR>', opts) -- Flytt til split under
-vim.keymap.set('n', '<leader><Left>', ':wincmd h<CR>', opts) -- Flytt til split til venstre
-vim.keymap.set('n', '<leader><Right>', ':wincmd l<CR>', opts) -- Flytt til split til høyre
+vim.keymap.set('n', '<leader>k', ':wincmd k<CR>', opts) -- Flytt til split over
+vim.keymap.set('n', '<leader>j', ':wincmd j<CR>', opts) -- Flytt til split under
+vim.keymap.set('n', '<leader>h', ':wincmd h<CR>', opts) -- Flytt til split til venstre
+vim.keymap.set('n', '<leader>l', ':wincmd l<CR>', opts) -- Flytt til split til høyre
 -- Tabs
 vim.keymap.set('n', '<leader>to', ':tabnew<CR>', opts) -- open new tab
 vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', opts) -- close current tab
@@ -72,3 +72,10 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<Down>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.keymap.set('n', '<Up>', ':m .-2<CR>==', { noremap = true, silent = true })
+vim.keymap.set('v', '<Down>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('v', '<Up>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Show FNs
+vim.keymap.set('n', '<leader>sfn', '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Se funksjoner med LSP' })
