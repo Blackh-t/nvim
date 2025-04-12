@@ -39,4 +39,5 @@ require("lazy").setup({
 	require("plugins.indent-blankline"),
 	require("plugins.flutter"),
 	require("plugins.rustfm"),
+	require("plugins.treesitter-context"),
 })
