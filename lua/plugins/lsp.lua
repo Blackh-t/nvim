@@ -153,7 +153,37 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     -- Ensure the servers and tools above are installed
     local servers = {
-      -- clangd = {},
+      clangd = {
+        cmd = { 'clangd' },
+        settings = {
+          capabilities = {
+            offsetEncoding = { 'utf-16' },
+          },
+        },
+        init_options = {
+          compilationDatabasePath = '.',
+          fallbackFlags = {
+            '-I../lib',
+            '-Ilib/',
+            '-I../',
+          },
+        },
+        --on_attach = function(client, bufnr)
+        --  -- Aktivere formatering hvis `clangd` støtter det
+        --  if client.server_capabilities.documentFormattingProvider then
+        --    vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+
+        --    -- Sett opp autoformat på lagring
+        --    vim.api.nvim_create_autocmd('BufWritePre', {
+        --      group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+        --      buffer = bufnr,
+        --      callback = function()
+        --        vim.lsp.buf.format { async = false }
+        --      end,
+        --    })
+        --  end
+        -- end,
+      },
       -- gopls = {},
       pyright = {},
       rust_analyzer = {
@@ -194,12 +224,9 @@ return {
       },
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
-      tailwindcss = {},
-      dockerls = {},
       sqlls = {},
       terraformls = {},
       jsonls = {},
-      yamlls = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
@@ -226,17 +253,17 @@ return {
       },
     }
 
-    require('lspconfig').ccls.setup {
-      init_options = { documentformatting = true },
-      settings = {
-        rootmarkers = { '.ccls', '.git/' },
-        languages = {
-          lua = {
-            { formatcommand = 'lua-format -i', formatstdin = true },
-          },
-        },
-      },
-    }
+    --    require('lspconfig').ccls.setup {
+    --      init_options = { documentformatting = true },
+    --      settings = {
+    --        rootmarkers = { '.ccls', '.git/' },
+    --        languages = {
+    --          lua = {
+    --            { formatcommand = 'lua-format -i', formatstdin = true },
+    --          },
+    --        },
+    --      },
+    --    }
 
     local lsp_config = require 'lspconfig'
     lsp_config['dartls'].setup {
