@@ -155,18 +155,11 @@ return {
     local servers = {
       clangd = {
         cmd = { 'clangd' },
-        settings = {
-          capabilities = {
-            offsetEncoding = { 'utf-16' },
-          },
-        },
         init_options = {
           compilationDatabasePath = '.',
-          fallbackFlags = {
-            '-I../lib',
-            '-Ilib/',
-            '-I../',
-          },
+        },
+        capabilities = {
+          offsetEncoding = { 'utf-8' },
         },
         --on_attach = function(client, bufnr)
         --  -- Aktivere formatering hvis `clangd` støtter det
